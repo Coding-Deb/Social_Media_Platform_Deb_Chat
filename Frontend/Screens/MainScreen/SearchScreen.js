@@ -59,8 +59,6 @@ export default function SearchScreen() {
               })
           }
         </ScrollView>
-        <BottomTab page={'SearchPage'} />
-
       </View>
     </View>
   )

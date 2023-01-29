@@ -1,5 +1,5 @@
 import { Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
@@ -14,65 +14,62 @@ import SampleApi from '../../Api/SampleApi'
 import BottomTab from '../../Components/BottomTab';
 import TopTab from '../../Components/TopTab';
 
+import Context from '../../Context/Context';
+
 export default function HomeScreen() {
   const navigation = useNavigation()
-  const [show, setshow] = useState(false)
-  const [counter, setcounter] = useState(0)
-
-  const change = () => {
-    if (show === true) {
-      setshow(false)
-      setcounter(counter)
-      if (counter > 0) {
-        setcounter(counter - 1)
-      }
-    } else {
-      setshow(true)
-      setcounter(counter + 1)
-    }
-  }
+  const { show, counter, change, color, textcolor } = useContext(Context)
 
   return (
-    <View style={styles.container}>
-      <View style={{ height: height, width: width, alignItems: 'center', margin: 40, justifyContent: 'space-between', }}>
+    <View style={{
+      flex: 1,
+      backgroundColor: color,
+      alignItems: 'center',
+      // justifyContent: 'center',
+    }}>
+      <View style={{ height: height, width: width, alignItems: 'center', justifyContent: 'space-between', }}>
 
         <TopTab page={'HomePage'} />
 
         <FlatList
           data={SampleApi}
+          style={{marginBottom:50}}
           renderItem={({ item }) => {
             return (
-              <View style={{ width: width, borderColor: 'white', borderWidth: 2, alignItems: 'center', }}>
+              <View style={{ width: width, borderColor: textcolor, borderWidth: 2, alignItems: 'center', }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', width: width, marginLeft: 25 }}>
-                  <FontAwesome name="user-circle-o" size={25} color="white" />
-                  <Text style={{ fontSize: 20, fontWeight: '800', color: 'white', margin: 15 }}>
+                  <FontAwesome name="user-circle-o" size={25} color={textcolor} />
+                  <Text style={{ fontSize: 20, fontWeight: '800', color: textcolor, margin: 15 }}>
                     {item.Name}
                   </Text>
                 </View>
 
-                <View style={{ width: width - 20, height: 270, justifyContent: 'center', alignItems: 'center', borderColor: 'white', borderWidth: 2, }}>
+                <View style={{ width: width - 20, height: 270, justifyContent: 'center', alignItems: 'center', borderColor: textcolor, borderWidth: 2, }}>
                   <Image
                     source={item.src}
-                    style={{ height: 120, width: width - 20, }}
-                    resizeMode='contain'
+                    style={{ height: 250, width: width - 40, }}
+
                   />
                 </View>
                 <View style={{ width: width, flexDirection: 'row', margin: 15, alignItems: 'center' }}>
                   {
                     show === true ?
-                      <AntDesign name="heart" size={30} color="white" style={{ margin: 12 }} onPress={change} />
+                      <AntDesign name="heart" size={30} color={textcolor} style={{ margin: 12 }} onPress={change} />
                       :
-                      <AntDesign name="hearto" size={30} color="white" style={{ margin: 12 }} onPress={change} />
+                      <AntDesign name="hearto" size={30} color={textcolor} style={{ margin: 12 }} onPress={change} />
                   }
-                  <Text style={{ fontSize: 20, fontWeight: '600', color: 'white' }}>
+                  <Text style={{ fontSize: 20, fontWeight: '600', color: textcolor }}>
                     {counter}
                   </Text>
-                  <TouchableOpacity onPress={() => { navigation.navigate('Chat') }}>
-                    <FontAwesome name="send" size={25} color="white" style={{ margin: 12 }} />
+                  <TouchableOpacity onPress={() => {
+                    navigation.navigate('Main_Chat', {
+                      name: item.Name
+                    })
+                  }}>
+                    <FontAwesome name="send" size={25} color={textcolor} style={{ margin: 12 }} />
                   </TouchableOpacity>
                 </View>
               </View>
-
             )
           }}
         />

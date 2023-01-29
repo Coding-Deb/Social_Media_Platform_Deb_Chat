@@ -1,16 +1,18 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
 import { Ionicons } from '@expo/vector-icons';
 
+import Context from '../Context/Context'
+
 export default function TopTab({ page }) {
     const navigation = useNavigation()
+    const { show, counter, change, color, textcolor } = useContext(Context)
     return (
         <View style={{ height: 120, width: width, alignItems: 'center', justifyContent: 'space-evenly', flexDirection: 'row', backgroundColor: '#05001E', }}>
-
             {
                 page === 'ProfilePage' ?
                     <View style={{ height: 120, width: 1 / 2 * width, alignItems: 'center', justifyContent: 'center', marginLeft: 35 }}>
@@ -36,7 +38,7 @@ export default function TopTab({ page }) {
                     null
             }
 
-            <View style={{ height: 120, width: 1 / 2 * width, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginLeft: 50 }}>
+            <View style={{ width: 1 / 2 * width, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginLeft: 50 }}>
 
                 <Image
                     source={require('../assets/DebChat.jpg')}
@@ -48,7 +50,7 @@ export default function TopTab({ page }) {
                 </Text>
             </View>
 
-            <View style={{ height: 120, width: 1 / 2 * width, alignItems: 'center', justifyContent: 'center', marginLeft: 50 }}>
+            <View style={{width: 1 / 2 * width, alignItems: 'center', justifyContent: 'center', marginLeft: 50 }}>
                 {
                     page === 'HomePage' ?
                         <TouchableOpacity onPress={() => {

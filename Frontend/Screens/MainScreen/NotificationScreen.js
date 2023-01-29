@@ -1,22 +1,30 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native'
+import React, { useContext } from 'react'
 import TopTab from '../../Components/TopTab'
 import BottomTab from '../../Components/BottomTab'
+import { Ionicons } from '@expo/vector-icons'
+import Context from '../../Context/Context'
 
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
 
 export default function NotificationScreen() {
+  const { color, setcolor, changecolor, text, settext, textcolor, settextcolor, isEnabled, setIsEnabled } = useContext(Context)
   return (
-    <View style={styles.container}>
+    <View style={{
+      flex: 1,
+    backgroundColor: color,
+    alignItems: 'center',
+    }}>
       <View style={{ height: height, width: width, alignItems: 'center', margin: 40, justifyContent: 'space-between' }}>
-        <TopTab page={'NotificationPage'}/>
-        <View style={{height:height,width:width,alignItems:'center'}}>
-          <Text style={{ fontSize: 25, fontWeight: 'bold', margin: 15, color: 'white' }}>
-            Notification Screen
+        <View style={{ height: 120, width: width, alignItems: 'center', flexDirection: 'row' }}>
+          <TouchableOpacity onPress={() => { navigation.navigate('Home') }}>
+            <Ionicons name="arrow-back-sharp" size={35} color={textcolor} style={{ marginLeft: 20 }} />
+          </TouchableOpacity>
+          <Text style={{ fontSize: 25, fontWeight: 'bold', color: textcolor, marginLeft: 15 }}>
+            Notifications
           </Text>
         </View>
-        <BottomTab page={'NotificationPage'}/>
       </View>
     </View>
   )

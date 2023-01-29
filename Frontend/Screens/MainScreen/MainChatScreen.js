@@ -15,8 +15,8 @@ export default function MainChatScreen() {
   const navigation = useNavigation()
   return (
     <View style={styles.container}>
-      <View style={{ height: height, width: width, alignItems: 'center', }}>
-        <View style={{ height: 70, width: width, borderBottomColor: 'white', borderBottomWidth: 2, flexDirection: 'row', alignItems: 'center', position: 'absolute' }}>
+      <View style={{ height: height, width: width, alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={{ height: 70, width: width, borderBottomColor: 'white', borderBottomWidth: 2, flexDirection: 'row', alignItems: 'center', }}>
 
           <View style={{ height: 70, width: 1 / 1.7 * width, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', position: 'absolute', left: 0 }}>
             <TouchableOpacity onPress={() => {
@@ -38,7 +38,6 @@ export default function MainChatScreen() {
               <Ionicons name="videocam" size={27} color="white" style={{ marginLeft: 25, }} />
             </TouchableOpacity>
           </View>
-
         </View>
       </View>
     </View>

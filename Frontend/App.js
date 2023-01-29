@@ -12,25 +12,28 @@ import ProfileScreen from './Screens/MainScreen/ProfileScreen';
 import SearchScreen from './Screens/MainScreen/SearchScreen';
 import SettingScreen from './Screens/MainScreen/SettingScreen';
 import MainChatScreen from './Screens/MainScreen/MainChatScreen'
+import Statedata from './Context/State';
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Login'>
-        <Stack.Screen name='Login' component={LoginScreen} options={{ animation: 'slide_from_right' }} />
-        <Stack.Screen name='Register' component={RegisterScreen} options={{ animation: 'slide_from_right' }} />
-        <Stack.Screen name='Home' component={HomeScreen} options={{ animation: 'slide_from_bottom' }} page='Home'/>
-        <Stack.Screen name='Search' component={SearchScreen} options={{ animation: 'slide_from_bottom' }} page='Search'/>
-        <Stack.Screen name='Chat' component={ChatScreen} options={{ animation: 'slide_from_right' }} />
-        <Stack.Screen name='Notification' component={NotificationScreen} options={{ animation: 'slide_from_right' }} page='Notification'/>
-        <Stack.Screen name='Profile' component={ProfileScreen} options={{ animation: 'slide_from_left' }} page='Profile'/>
-        <Stack.Screen name='Post' component={PostScreen} options={{ animation: 'slide_from_bottom' }} page='Post'/>
-        <Stack.Screen name='Setting' component={SettingScreen} options={{ animation: 'slide_from_right' }} page='Setting'/>
-        <Stack.Screen name='Main_Chat' component={MainChatScreen} options={{ animation: 'slide_from_right' }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Statedata>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Login'>
+          <Stack.Screen name='Login' component={LoginScreen} options={{ animation: 'slide_from_right' }} />
+          <Stack.Screen name='Register' component={RegisterScreen} options={{ animation: 'slide_from_right' }} />
+          <Stack.Screen name='Home' component={HomeScreen} options={{ animation: 'slide_from_bottom' }} page='Home' />
+          <Stack.Screen name='Search' component={SearchScreen} options={{ animation: 'slide_from_bottom' }} page='Search' />
+          <Stack.Screen name='Chat' component={ChatScreen} options={{ animation: 'slide_from_right' }} />
+          <Stack.Screen name='Notification' component={NotificationScreen} options={{ animation: 'slide_from_right' }} page='Notification' />
+          <Stack.Screen name='Profile' component={ProfileScreen} options={{ animation: 'slide_from_left' }} page='Profile' />
+          <Stack.Screen name='Post' component={PostScreen} options={{ animation: 'slide_from_bottom' }} page='Post' />
+          <Stack.Screen name='Setting' component={SettingScreen} options={{ animation: 'slide_from_right' }} page='Setting' />
+          <Stack.Screen name='Main_Chat' component={MainChatScreen} options={{ animation: 'slide_from_right' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Statedata>
   );
 }
 

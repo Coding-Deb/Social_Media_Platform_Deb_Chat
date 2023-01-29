@@ -9,14 +9,10 @@ const width = Dimensions.get('window').width
 export default function PostScreen() {
   return (
     <View style={styles.container}>
-      <View style={{ height: height, width: width, alignItems: 'center', margin: 40, justifyContent: 'space-between' }}>
-        <TopTab />
-        <View style={{height:height,width:width,alignItems:'center'}}>
+      <View style={{ height: height, width: width, alignItems: 'center', margin: 40, justifyContent: 'center' }}>
           <Text style={{ fontSize: 25, fontWeight: 'bold', margin: 15, color: 'white' }}>
             Post Screen
           </Text>
-        </View>
-        <BottomTab page={'PostPage'}/>
       </View>
     </View>
   )
