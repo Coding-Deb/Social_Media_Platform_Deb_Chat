@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Frontend",
+    "slug": "Frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/DebChat.jpg",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/DebChat.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#05001E"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/DebChat.jpg",
+        "backgroundColor": "#05001E"
+      }
+    },
+    "web": {
+      "favicon": "./assets/DebChat.jpg"
+    }
+  }
+}
