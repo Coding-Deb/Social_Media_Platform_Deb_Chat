@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SampleApi from "../Api/SampleApi";
 import Context from "./Context"
 
 
@@ -8,7 +9,9 @@ const Statedata = (props) => {
     const [text, settext] = useState('Switch To Dark Mode')
     const [show, setshow] = useState(false)
     const [counter, setcounter] = useState(0)
-    const [isEnabled, setIsEnabled] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false)
+
+    const [btntext, setbtntext] = useState('Follow')
 
     const changecolor = () => {
         if (color === 'white') {
@@ -36,8 +39,20 @@ const Statedata = (props) => {
             setcounter(counter + 1)
         }
     }
+
+    const changebtntext = () => {
+        // if (SampleApi.filter((item) => { item.Id.match(item.Name) })) {
+            if (btntext === 'Follow') {
+                setbtntext('Following')
+            }
+            else {
+                setbtntext('Follow')
+            }
+        } 
+    // }
+
     return (
-        <Context.Provider value={{ color, setcolor, changecolor, text, settext, textcolor, settextcolor, show, setshow, counter, setcounter, change, isEnabled, setIsEnabled }}>
+        <Context.Provider value={{ color, setcolor, changecolor, text, settext, textcolor, settextcolor, show, setshow, counter, setcounter, change, isEnabled, setIsEnabled, btntext, changebtntext }}>
             {props.children}
         </Context.Provider>
     )

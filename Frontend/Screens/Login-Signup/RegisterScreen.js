@@ -5,12 +5,25 @@ import { useNavigation } from '@react-navigation/native'
 const height = Dimensions.get('window').height
 const width = Dimensions.get('window').width
 
+import axios from 'axios'
+
 export default function RegisterScreen() {
   const navigation = useNavigation()
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [cpassword, setcpassword] = useState('')
+
+  const Submit = () => {
+    const data = { name, email, password }
+    if (name && password && email) {
+      axios.post('http://192.168.56.210:5000/userdata/register', data)
+        .then((data) => console.log('1 Data received'))
+        .catch(err => console.log(err))
+      navigation.navigate('Login')
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={{ height: height, width: width, alignItems: 'center', justifyContent: 'center' }}>
@@ -46,13 +59,10 @@ export default function RegisterScreen() {
           value={cpassword}
           onChangeText={(text) => setcpassword(text)}
         />
-        
-        <TouchableOpacity style={{ height: 70, width: 1 / 2.2 * width, margin: 15, borderColor:'white',borderWidth:2, alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}
-          onPress={() => {
-            navigation.navigate('Login')
-          }}
-        >
-          <Text style={{ fontSize: 18, fontWeight: 'bold', margin: 15,color:'white' }}>
+
+        <TouchableOpacity style={{ height: 70, width: 1 / 2.2 * width, margin: 15, borderColor: 'white', borderWidth: 2, alignItems: 'center', justifyContent: 'center', borderRadius: 20 }}
+          onPress={Submit}>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', margin: 15, color: 'white' }}>
             Register
           </Text>
         </TouchableOpacity>
@@ -61,7 +71,7 @@ export default function RegisterScreen() {
         </Text>
         <Text style={{ fontSize: 20, fontWeight: 'bold', margin: 8, color: 'white' }}
           onPress={() => {
-            navigation.navigate('Register')
+            navigation.navigate('Login')
           }}
         >
           Login Here
